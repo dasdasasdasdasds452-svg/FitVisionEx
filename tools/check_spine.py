@@ -1,0 +1,12 @@
+import pandas as pd
+df = pd.read_csv('data/raw/kaggle_squat/squat_features_augmented.csv')
+print(df.columns.tolist())
+print()
+print(df[['spine_angle','torso_lean']].head(20).to_string())
+print()
+print('Correlation:', df['spine_angle'].corr(df['torso_lean']))
+print('Same?:', (df['spine_angle'] == df['torso_lean']).all())
+print('Diff mean:', (df['spine_angle'] - df['torso_lean']).abs().mean())
+print()
+print('spine_angle range:', df['spine_angle'].min(), '-', df['spine_angle'].max())
+print('torso_lean range:', df['torso_lean'].min(), '-', df['torso_lean'].max())

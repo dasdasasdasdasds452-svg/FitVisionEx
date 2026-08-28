@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/796117772441531686/f9559a1f31a64573b95a5650888ed4b2/artifacts
+end_time: 1784449354043
+entry_point_name: ''
+experiment_id: '796117772441531686'
+lifecycle_stage: active
+run_id: f9559a1f31a64573b95a5650888ed4b2
+run_name: chill-trout-474
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784449315012
+status: 3
+tags: []
+user_id: tonkla

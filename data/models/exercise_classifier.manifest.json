@@ -1,0 +1,21 @@
+{
+    "model_name": "exercise_classifier",
+    "description": "Exercise Type Classification",
+    "features": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12"
+    ],
+    "created_at": "2026-07-19T14:58:24.135794",
+    "sha256": "9212713a8f4d4233a5ce52017edacb273111e863e0706d88f897cd195045ea60"
+}

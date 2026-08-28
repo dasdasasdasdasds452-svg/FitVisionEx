@@ -1,0 +1,10 @@
+Loading data...
+
+Training and evaluating models...
+
+Model Name                          | Accuracy   | F1 Score   | Precision  | Recall    
+-------------------------------------------------------------------------------------
+Logistic Regression                 |   72.52%   |   72.40%   |   72.43%   |   72.38%
+K-Nearest Neighbors                 |   89.56%   |   89.52%   |   89.51%   |   89.54%
+Decision Tree                       |   86.51%   |   86.46%   |   86.45%   |   86.47%
+Random Forest                       |   93.92%   |   93.88%   |   93.99%   |   93.81%

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/470735868449073563/70428e0aea4e48608295dcae6fe486f2/artifacts
+end_time: 1784885043785
+entry_point_name: ''
+experiment_id: '470735868449073563'
+lifecycle_stage: active
+run_id: 70428e0aea4e48608295dcae6fe486f2
+run_name: upset-vole-621
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784884978116
+status: 3
+tags: []
+user_id: tonkla

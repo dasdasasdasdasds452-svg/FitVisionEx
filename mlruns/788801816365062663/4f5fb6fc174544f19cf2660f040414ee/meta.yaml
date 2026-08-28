@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/788801816365062663/4f5fb6fc174544f19cf2660f040414ee/artifacts
+end_time: 1784449314926
+entry_point_name: ''
+experiment_id: '788801816365062663'
+lifecycle_stage: active
+run_id: 4f5fb6fc174544f19cf2660f040414ee
+run_name: honorable-dove-807
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784449258113
+status: 3
+tags: []
+user_id: tonkla

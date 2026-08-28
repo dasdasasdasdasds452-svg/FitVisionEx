@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FitVision - Academic Poster</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ═══ POSTER HEADER ═══ */
+        .poster-header {
+            background: #113c7a;
+            /* matching the reference KKU blue */
+            color: #ffffff;
+            padding: 24px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .title-th {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .title-en {
+            font-size: 16px;
+            font-weight: 500;
+            color: #d1e3fa;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            color: #113c7a;
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 18px;
+            line-height: 1.2;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            font-weight: 600;
+            color: #475569;
+            margin-top: 4px;
+        }
+
+        /* ═══ MAIN LAYOUT ═══ */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 32% 66%;
+            gap: 2%;
+            padding: 15px 25px;
+        }
+
+        .col-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ═══ SECTION HEADERS ═══ */
+        .sec-header {
+            background-color: #92b5df;
+            /* matching the reference image's light blue */
+            color: #000;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 6px 12px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .sec-header:first-child {
+            margin-top: 0;
+        }
+
+        /* ═══ TEXT CONTENT ═══ */
+        .content {
+            font-size: 12px;
+            line-height: 1.55;
+            text-align: justify;
+            padding: 0 4px;
+        }
+
+        .content p {
+            text-indent: 2em;
+            margin-bottom: 6px;
+        }
+
+        ul,
+        ol {
+            padding-left: 22px;
+            margin-bottom: 8px;
+        }
+
+        li {
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        /* ═══ DATA & HIGHLIGHT BOXES (Right Column) ═══ */
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .innov-box {
+            background: #f8fafc;
+            border: 1.5px solid #c5d1e0;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .innov-title {
+            color: #113c7a;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ═══ PIPELINE FLOW ═══ */
+        .pipeline-flow {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            margin: 10px 0;
+            background: #fdfdfd;
+            border: 1.5px dashed #c5d1e0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .pipe-step {
+            background: #f0f4fa;
+            border: 1.5px solid #92b5df;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            width: 18%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .pipe-step .step-circle {
+            background: #113c7a;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .pipe-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            color: #113c7a;
+            font-weight: bold;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 11px;
+            color: #475569;
+            font-style: italic;
+            margin-top: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* ═══ MODEL CARDS ═══ */
+        .models-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+
+        .m-card {
+            border: 1.5px solid #c5d1e0;
+            border-radius: 6px;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .m-header {
+            padding: 8px 12px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .m-body {
+            padding: 10px;
+            font-size: 11.5px;
+            line-height: 1.55;
+        }
+
+        .m-feat-title {
+            font-weight: 700;
+            color: #113c7a;
+            font-size: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+        }
+
+        .m-sub {
+            font-weight: 600;
+            color: #475569;
+            margin-top: 6px;
+        }
+
+        .m-item {
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .m-item::before {
+            content: '•';
+            position: absolute;
+            left: 2px;
+            color: #113c7a;
+        }
+
+        .m-class-box {
+            margin-top: 8px;
+            background: #f8fafc;
+            border: 1px solid #c5d1e0;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .algo-badges {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .algo-b {
+            font-size: 9px;
+            font-weight: 600;
+            background: #113c7a;
+            color: #fff;
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .m-output {
+            margin-top: 6px;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .m-output.c-correct {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            color: #2e7d32;
+        }
+
+        .m-output.c-wrong {
+            background: #ffebee;
+            border: 1px solid #ef9a9a;
+            color: #c62828;
+            margin-top: 4px;
+        }
+
+        /* ═══ RESULTS TABLE ═══ */
+        .results-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .comp-table th {
+            background: #113c7a;
+            color: #fff;
+            padding: 6px 10px;
+            font-weight: 700;
+            border: 1px solid #113c7a;
+        }
+
+        .comp-table td {
+            padding: 6px 10px;
+            border: 1px solid #c5d1e0;
+            text-align: center;
+        }
+
+        .comp-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        .comp-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            background: #eef2f6 !important;
+        }
+
+        .acc-row td {
+            background: #e8f5e9 !important;
+            font-weight: 700;
+            color: #1B4A3A;
+        }
+
+        .ds-box {
+            background: #fdfdfd;
+            border: 1.5px solid #c5d1e0;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+
+        .ds-box .ds-title {
+            font-weight: 700;
+            color: #113c7a;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        /* ═══ POSTER FOOTER ═══ */
+        .poster-footer {
+            background: #113c7a;
+            color: #fff;
+            padding: 15px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+        .footer-center {
+            text-align: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ════════ HEADER ════════ -->
+    <div class="poster-header">
+        <div class="header-text">
+            <div class="title-th">
+                ระบบวิเคราะห์ท่าทางการออกกำลังกายแบบฝึกด้วยน้ำหนักและประเมินความเสี่ยงการบาดเจ็บแบบกระจายศูนย์ผ่านวิดีโอด้วยเทคนิคการเรียนรู้ของเครื่องแบบองค์รวม
+            </div>
+            <div class="title-en">FitVision: A Distributed Video-Based System for Weight Training Posture Analysis and
+                Injury Risk Assessment Using Ensemble Machine Learning</div>
+        </div>
+        <div class="logo-box">
+            COLLEGE OF<br>COMPUTING
+            <div class="logo-sub">KHON KAEN UNIVERSITY</div>
+        </div>
+    </div>
+
+    <!-- ════════ MAIN GRID ════════ -->
+    <div class="main-grid">
+
+        <!-- ─── LEFT COLUMN ─── -->
+        <div class="col-left">
+            <div class="sec-header">หลักการและเหตุผล (Introduction)</div>
+            <div class="content">
+                <p>การออกกำลังกายด้วยการฝึกน้ำหนัก (Weight Training)
+                    เป็นวิธีที่ได้รับความนิยมในการเสริมสร้างกล้ามเนื้อและดูแลสุขภาพ อย่างไรก็ตาม
+                    การออกกำลังกายด้วยท่าทางที่ไม่ถูกต้อง โดยเฉพาะท่าที่มีความซับซ้อน ได้แก่ Squat, Deadlift และ Bench
+                    Press อาจนำไปสู่การบาดเจ็บที่รุนแรงบริเวณหลังส่วนล่าง ข้อเข่า และข้อไหล่ในระยะยาว</p>
+                <p>ในปัจจุบัน ผู้ฝึกจำนวนมากไม่สามารถเข้าถึงเทรนเนอร์ส่วนตัวได้อย่างต่อเนื่อง
+                    โครงงานวิจัยนี้จึงได้นำเสนอ <strong>FitVision</strong>
+                    ซึ่งเป็นระบบวิเคราะห์ท่าทางแบบอัตโนมัติจากภาพวิดีโอเดี่ยว (Monocular Video)
+                    โดยประยุกต์ใช้เทคโนโลยีด้าน Computer Vision ร่วมกับ Machine Learning
+                    เพื่อประเมินความเสี่ยงและให้คำแนะนำแบบทันท่วงที (Real-time Feedback)</p>
+            </div>
+
+            <div class="sec-header">วัตถุประสงค์ (Objectives)</div>
+            <div class="content">
+                <ol>
+                    <li>พัฒนาระบบสามารถวิเคราะห์ท่าทางการออกกำลังกาย 3 ท่าหลักจำพวก (Squat, Deadlift, Bench Press)
+                        ผ่านวิดีโอโดยใช้เทคโนโลยี Computer Vision</li>
+                    <li>พัฒนาและเปรียบเทียบโมเดล Machine Learning
+                        เพื่อการประเมินความเสี่ยงการบาดเจ็บและวินิจฉัยข้อผิดพลาด (Error Diagnosis) ที่มีความแม่นยำสูง
+                    </li>
+                    <li>ออกแบบสถาปัตยกรรมระบบแบบ Edge-Cloud เพื่อให้ก้าวข้ามข้อจำกัดด้านแบนด์วิดท์
+                        และรองรับการประมวลผลบนเซิร์ฟเวอร์ขนาดเล็กได้อย่างมีประสิทธิภาพ</li>
+                </ol>
+            </div>
+
+            <div class="sec-header">ผลที่ได้รับ (Contributions)</div>
+            <div class="content">
+                <ul>
+                    <li>ผู้ใช้งานสามารถทราบข้อผิดพลาดในท่าทางของตนเอง (เช่น เข่าบีบเข้า, หลังค่อม, ลงไม่ลึกพอ)
+                        ได้ทันทีจากวิดีโอ</li>
+                    <li>ช่วยลดระดับความเสี่ยงในการบาดเจ็บที่อาจเกิดจากการออกกำลังกายผิดท่า</li>
+                    <li>ได้กรอบการทำงาน (Framework) ในการสกัดฟีเจอร์เชิงเรขาคณิต (Geometric Features)
+                        ที่ใช้ทรัพยากรประมวลผลต่ำกว่าระบบ Video-CNN เดิมกว่า 80%</li>
+                </ul>
+            </div>
+
+            <div class="sec-header">สรุปผล (Conclusion)</div>
+            <div class="content">
+                <p>FitVision พิสูจน์ให้เห็นว่าการใช้เทคนิค <strong>Domain-Specific Feature Engineering</strong>
+                    ควบคู่ไปกับ <strong>Tree-based Ensemble Models</strong>
+                    สามารถให้ผลลัพธ์การจำแนกท่าทางที่มีความแม่นยำสูงมาก (สูงถึง 94.5% ในท่า Squat และ 90.8% ในท่า
+                    Deadlift) โดยไม่จำเป็นต้องพึ่งพาโมเดล Deep Learning ขนาดใหญ่ในส่วนของการจำแนกประเภท (Classification)
+                </p>
+                <p>นอกจากนี้ สถาปัตยกรรม <strong>Distributed Edge-Cloud</strong> ที่ถ่ายโอนภาระการคำนวณ Landmark
+                    ไปยังเบราว์เซอร์ผู้ใช้ ช่วยแก้ปัญหาคอขวดแบนด์วิดท์และช่วยให้เซิร์ฟเวอร์ขนาด 512MB RAM
+                    สามารถให้บริการผู้ใช้งานจำนวนมากได้พร้อมกันอย่างราบรื่น</p>
+            </div>
+
+            <div class="sec-header">การนำไปใช้และพัฒนาต่อ (Applications & Extensions)</div>
+            <div class="content">
+                <ul>
+                    <li>ขยายขอบเขตชนิดของการออกกำลังกายให้ครอบคลุมท่าอื่นๆ เช่น Overhead Press, Barbell Row, Lunge</li>
+                    <li>พัฒนาและบูรณาการระบบติดตามการเคลื่อนไหวเพื่อทำ Repetition Counting (นับจำนวนครั้งอัตโนมัติ) และ
+                        การวิเคราะห์ความเร็ว (Tempo Analysis)</li>
+                    <li>เชื่อมต่อเข้ากับแอปพลิเคชันบนมือถือพร้อมระบบ Gamification เพื่อสร้างแรงจูงใจในการออกกำลังกาย
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sec-header">เอกสารอ้างอิง (References)</div>
+            <div class="content" style="font-size: 11px; margin-top:4px;">
+                <p style="text-indent: -1.5em; padding-left: 1.5em; margin-bottom: 2px;">[1] Lugaresi, C. et al.
+                    "MediaPipe: A Framework for Building Perception Pipelines." <i>CVPR Workshops</i>, 2019.</p>
+                <p style="text-indent: -1.5em; padding-left: 1.5em; margin-bottom: 2px;">[2] Jocher, G. et al.
+                    "Ultralytics YOLOv8." <i>GitHub Repository</i>, 2023.</p>
+                <p style="text-indent: -1.5em; padding-left: 1.5em; margin-bottom: 2px;">[3] Chen, T. & Guestrin, C.
+                    "XGBoost: A Scalable Tree Boosting System." <i>KDD</i>, 2016.</p>
+                <p style="text-indent: -1.5em; padding-left: 1.5em; margin-bottom: 2px;">[4] Chawla, N.V. et al. "SMOTE:
+                    Synthetic Minority Over-sampling Technique." <i>JAIR</i>, 16, 321-357, 2002.</p>
+            </div>
+        </div>
+
+        <!-- ─── RIGHT COLUMN ─── -->
+        <div class="col-right">
+
+            <!-- 1. Innovations -->
+            <div class="sec-header">แนวคิดและนวัตกรรมที่พัฒนา (Innovations & Technical Highlights)</div>
+            <div class="innovations-grid">
+                <div class="innov-box">
+                    <div class="innov-title">⚙️ Domain-Specific Features</div>
+                    <div class="content" style="font-size: 11.5px;">
+                        สกัด <strong>33-point 3D Landmarks</strong> ด้วย MediaPipe แล้วคำนวณ <strong>Joint Angles,
+                            Distances และ Symmetry</strong> ด้วยหลักตรีโกณมิติ เฉพาะจุดที่สำคัญของแต่ละท่า (20
+                        ฟีเจอร์สำหรับ Squat, 13 ฟีเจอร์สำหรับ Deadlift/Bench Press) ทำให้แบบจำลองมีขนาดเล็กมาก
+                        โมเดลจึงทำงานได้เร็ว
+                    </div>
+                </div>
+                <div class="innov-box">
+                    <div class="innov-title">🚀 Memory-Optimized Serving</div>
+                    <div class="content" style="font-size: 11.5px;">
+                        ออกแบบระบบ <strong>Lazy-loading & Aggressive Garbage Collection</strong> สลับโมเดลเข้าออก RAM
+                        อัตโนมัติเมื่อสิ้นสุดคำสั่ง ส่งผลให้สามารถนำโมเดลขนาดใหญ่หลายตัวมาให้บริการบนเซิร์ฟเวอร์ที่มี
+                        <strong>RAM จำกัดเพียง 512MB</strong> ได้อย่างเสถียร
+                    </div>
+                </div>
+                <div class="innov-box">
+                    <div class="innov-title">🔀 Sophisticated ML Architecture</div>
+                    <div class="content" style="font-size: 11.5px;">
+                        ปรับโครงสร้างอัลกอริทึมให้เหมาะกับตัวแปรของแต่ละท่า โดยใช้ <strong>Voting Ensemble
+                            (XGB+RF)</strong> สำหรับท่าที่ซับซ้อนอย่าง Squat รวมไปถึงการแก้ปัญหาชุดข้อมูลที่ไม่สมดุล
+                        (Class Imbalance) ด้วยเทคนิค <strong>SMOTE</strong> ในทุกโมเดล
+                    </div>
+                </div>
+                <div class="innov-box">
+                    <div class="innov-title">🌐 Distributed Edge-Cloud</div>
+                    <div class="content" style="font-size: 11.5px;">
+                        ประมวลผลวิดีโอและ Landmark ด้วย <strong>Web Browser (Edge)</strong>
+                        แล้วจึงส่งต่อเป็นอาเรย์อาร์กิวเมนต์ตัวเลขไปยังเซิร์ฟเวอร์บน <strong>Cloud (Backend)</strong>
+                        เพื่อทำ ML Classification <strong>ลดขนาด Data Payload จากวิดีโอระดับ MB เหลือเพียงระดับ
+                            KB</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unified System Pipeline & Models Flowchart -->
+            <div class="sec-header">ภาพรวมสถาปัตยกรรมและตรรกะการทำงานของระบบ (System Pipeline & Models Architecture)
+            </div>
+
+            <div
+                style="background: #ffffff; padding: 12px 10px; border: 1.5px solid #113c7a; border-radius: 8px; font-family: sans-serif; margin-bottom: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+
+                <!-- TOP LEVEL: The Data Pipeline -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; width: 100%;">
+                    <div
+                        style="background: #fef08a; padding: 6px 4px; border-radius: 12px; font-weight: 700; font-size: 10px; border: 1.5px solid #ca8a04; width: 14%; text-align: center; display:flex; align-items:center; justify-content:center; gap:4px;">
+                        <svg style="width:14px;height:14px;color:#ca8a04" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4m0 0l4-3v8l-4-3v4a2 2 0 01-2 2H4a2 2 0 01-2-2V5z">
+                            </path>
+                        </svg>
+                        Video Input
+                    </div>
+                    <div style="color: #64748b; font-weight: bold; font-size: 12px;">➔</div>
+                    <div
+                        style="background: #fef08a; padding: 6px 4px; border-radius: 12px; font-weight: 700; font-size: 10px; border: 1.5px solid #ca8a04; width: 18%; text-align: center;">
+                        YOLOv8 &<br>Crop ROI</div>
+                    <div style="color: #64748b; font-weight: bold; font-size: 12px;">➔</div>
+                    <div
+                        style="background: #fef08a; padding: 6px 4px; border-radius: 12px; font-weight: 700; font-size: 10px; border: 1.5px solid #ca8a04; width: 18%; text-align: center;">
+                        MediaPipe Pose</div>
+                    <div style="color: #64748b; font-weight: bold; font-size: 12px;">➔</div>
+                    <div
+                        style="background: #dbeafe; padding: 6px 4px; border-radius: 12px; font-weight: 700; font-size: 10px; border: 1.5px solid #3b82f6; width: 18%; text-align: center;">
+                        Feature<br>Extraction</div>
+                    <div style="color: #64748b; font-weight: bold; font-size: 12px;">➔</div>
+                    <div
+                        style="background: #ffffff; padding: 6px 4px; border-radius: 12px; font-weight: 700; font-size: 10px; border: 1.5px solid #1e293b; width: 18%; text-align: center;">
+                        Classification</div>
+                </div>
+
+                <!-- CONNECTOR TO BRANCHES -->
+                <div style="position: relative; height: 26px; width: 100%;">
+                    <div
+                        style="position: absolute; left: 81%; top: 0px; width: 1.5px; height: 12px; background: #64748b; transform: translateX(-50%);">
+                    </div>
+                    <div
+                        style="position: absolute; left: 16%; right: 19%; top: 12px; height: 1.5px; background: #64748b;">
+                    </div>
+
+                    <div
+                        style="position: absolute; left: 16%; top: 12px; width: 1.5px; height: 10px; background: #64748b;">
+                    </div>
+                    <div
+                        style="position: absolute; left: 50%; top: 12px; width: 1.5px; height: 10px; background: #64748b; transform: translateX(-50%);">
+                    </div>
+                    <div
+                        style="position: absolute; right: 19%; top: 12px; width: 1.5px; height: 10px; background: #64748b;">
+                    </div>
+
+                    <div
+                        style="position: absolute; left: 16%; top: 20px; font-size: 10px; color: #64748b; transform: translateX(-40%); line-height:1;">
+                        ▼</div>
+                    <div
+                        style="position: absolute; left: 50%; top: 20px; font-size: 10px; color: #64748b; transform: translateX(-50%); line-height:1;">
+                        ▼</div>
+                    <div
+                        style="position: absolute; right: 19%; top: 20px; font-size: 10px; color: #64748b; transform: translateX(35%); line-height:1;">
+                        ▼</div>
+                </div>
+
+                <!-- THE THREE EXERCISE BRANCHES -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+
+                    <!-- SQUAT COLUMN -->
+                    <div style="width: 42%; display: flex; flex-direction: column; align-items: center;">
+                        <div
+                            style="background: #dbeafe; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 11px; border: 1.5px solid #3b82f6; margin-bottom: 6px; width: 90%; text-align: center;">
+                            Squat</div>
+                        <div
+                            style="border: 1.5px dashed #c084fc; border-radius: 8px; padding: 8px 6px; width: 100%; background: #ffffff; position: relative;">
+
+                            <div
+                                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    20<br>Features</div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div style="display: flex; flex-direction: column; gap: 4px;">
+                                    <div
+                                        style="background: #ffffff; border: 1px solid #1e293b; border-radius: 10px; font-size: 8px; font-weight: bold; padding: 2px 4px; text-align: center;">
+                                        Random<br>Forest</div>
+                                    <div
+                                        style="background: #ffffff; border: 1px solid #1e293b; border-radius: 10px; font-size: 8px; font-weight: bold; padding: 2px 4px; text-align: center;">
+                                        XGBoost</div>
+                                </div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    Soft<br>Voting</div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    Binary<br>Model</div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div
+                                    style="background: #dcfce7; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 6px; font-size: 8px; font-weight: bold;">
+                                    Correct</div>
+                            </div>
+
+                            <div
+                                style="position: absolute; top: 35px; right: 48px; width: 1.5px; height: 12px; background: #64748b;">
+                            </div>
+                            <div
+                                style="position: absolute; top: 45px; right: 48px; font-size: 9px; color: #64748b; transform: translateX(-40%); line-height:1;">
+                                ▼</div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; margin-top: 10px; align-items: center;">
+                                <div style="display: flex; flex-direction: column; align-items: center; width: 45%;">
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 8px; font-size: 9px; font-weight: bold; margin-bottom: 6px;">
+                                        Incorrect</div>
+                                    <div style="color: #64748b; font-size: 10px; line-height: 1;">▼</div>
+                                    <div
+                                        style="background: #ffffff; border: 1px solid #1e293b; border-radius: 12px; padding: 6px 4px; font-size: 9px; font-weight: bold; text-align: center;">
+                                        Multi-class<br>Model</div>
+                                </div>
+                                <div style="color: #64748b; font-size: 9px; margin-top: 20px;">➔</div>
+                                <div style="display: flex; flex-direction: column; gap: 3px; width: 45%;">
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 2px 4px; font-size: 7.5px; font-weight: bold; text-align: center;">
+                                        Shallow Squat</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 2px 4px; font-size: 7.5px; font-weight: bold; text-align: center;">
+                                        Forward Lean</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 2px 4px; font-size: 7.5px; font-weight: bold; text-align: center;">
+                                        Knees Caving</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 2px 4px; font-size: 7.5px; font-weight: bold; text-align: center;">
+                                        Heels Off</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 2px 4px; font-size: 7.5px; font-weight: bold; text-align: center;">
+                                        Asymmetric</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DEADLIFT COLUMN -->
+                    <div style="width: 27%; display: flex; flex-direction: column; align-items: center;">
+                        <div
+                            style="background: #dbeafe; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 11px; border: 1.5px solid #3b82f6; margin-bottom: 6px; width: 90%; text-align: center;">
+                            Deadlift</div>
+                        <div
+                            style="border: 1.5px dashed #1e293b; border-radius: 8px; padding: 8px 6px; width: 100%; background: #ffffff; height: 135px; display: flex; align-items: center;">
+                            <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    13<br>Features</div>
+                                <div style="color: #64748b; font-size: 9px; margin: 0 4px;">➔</div>
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 7.5px; font-weight: bold; text-align: center; line-height: 1.2; padding: 2px;">
+                                    Random<br>Forest<br>Classifier</div>
+                                <div
+                                    style="color: #64748b; font-size: 9px; margin: 0 4px; display: flex; flex-direction: column; justify-content: space-between; height: 40px;">
+                                    <span style="transform: rotate(-15deg) translateY(-2px);">➔</span>
+                                    <span style="transform: rotate(15deg) translateY(2px);">➔</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div
+                                        style="background: #dcfce7; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 6px; font-size: 8px; font-weight: bold; text-align: center;">
+                                        Correct</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 6px; font-size: 8px; font-weight: bold; text-align: center;">
+                                        Incorrect</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BENCH PRESS COLUMN -->
+                    <div style="width: 29%; display: flex; flex-direction: column; align-items: center;">
+                        <div
+                            style="background: #dbeafe; padding: 4px 10px; border-radius: 12px; font-weight: 700; font-size: 11px; border: 1.5px solid #3b82f6; margin-bottom: 6px; width: 90%; text-align: center;">
+                            Bench Press</div>
+                        <div
+                            style="border: 1.5px dashed #1e293b; border-radius: 8px; padding: 8px 6px; width: 100%; background: #ffffff; height: 135px; display: flex; align-items: center;">
+                            <div
+                                style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    13<br>Features</div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div
+                                        style="background: #ffffff; border: 1px solid #1e293b; border-radius: 12px; font-size: 8px; font-weight: bold; padding: 2px 4px; text-align: center;">
+                                        XGBoost</div>
+                                    <div
+                                        style="background: #ffffff; border: 1px solid #1e293b; border-radius: 12px; font-size: 8px; font-weight: bold; padding: 2px 4px; text-align: center;">
+                                        Random<br>Forest</div>
+                                </div>
+                                <div style="color: #64748b; font-size: 9px;">➔</div>
+                                <div
+                                    style="background: #ffffff; border: 1px solid #1e293b; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1;">
+                                    Soft<br>Voting</div>
+                                <div
+                                    style="color: #64748b; font-size: 9px; display: flex; flex-direction: column; justify-content: space-between; height: 35px; margin-left:2px;">
+                                    <span style="transform: rotate(-15deg) translateY(-2px);">➔</span>
+                                    <span style="transform: rotate(15deg) translateY(2px);">➔</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div
+                                        style="background: #dcfce7; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 6px; font-size: 8px; font-weight: bold; text-align: center;">
+                                        Correct</div>
+                                    <div
+                                        style="background: #fee2e2; border: 1px solid #1e293b; border-radius: 10px; padding: 3px 6px; font-size: 8px; font-weight: bold; text-align: center;">
+                                        Incorrect</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sec-header">ผลการฝึกสอนและประเมินประสิทธิภาพ (Experimental Results)</div>
+            <div style="background: #ffffff; border: 1.5px solid #113c7a; border-radius: 6px; overflow: hidden; height: fit-content; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-top: 8px; margin-bottom: 10px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 9.5px; text-align: center;">
+                    <tr style="background: #eef2f6; color: #113c7a; font-weight: 700; border-bottom: 1.5px solid #113c7a;">
+                        <th style="padding: 6px 10px; text-align:left; border-right: 1px solid #c5d1e0; width: 44%;">แบบจำลอง (Machine Learning Algorithm)</th>
+                        <th style="padding: 6px 4px; border-right: 1px solid #c5d1e0; width: 14%;">Accuracy (%)</th>
+                        <th style="padding: 6px 4px; border-right: 1px solid #c5d1e0; width: 14%;">Precision (%)</th>
+                        <th style="padding: 6px 4px; border-right: 1px solid #c5d1e0; width: 14%;">Recall (%)</th>
+                        <th style="padding: 6px 4px; width: 14%;">F1-score (%)</th>
+                    </tr>
+                    
+                    <!-- SQUAT -->
+                    <tr style="background: #113c7a; color: #fff; font-weight: 700;">
+                        <td colspan="5" style="text-align:left; padding: 4px 10px; font-size: 10.5px;">1. ท่า Squat (6 Classes Multi-classification)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Logistic Regression</td>
+                        <td>72.52</td><td>72.43</td><td>72.38</td><td>72.40</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Multi-Layer Perceptron (NN)</td>
+                        <td>80.75</td><td>81.46</td><td>81.19</td><td>80.74</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Gradient Boosting</td>
+                        <td>84.78</td><td>84.95</td><td>84.53</td><td>84.65</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Decision Tree</td>
+                        <td>86.51</td><td>86.45</td><td>86.47</td><td>86.46</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">K-Nearest Neighbors</td>
+                        <td>89.56</td><td>89.51</td><td>89.54</td><td>89.52</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">CatBoost</td>
+                        <td>92.24</td><td>92.31</td><td>92.12</td><td>92.20</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">LightGBM</td>
+                        <td>92.87</td><td>92.97</td><td>92.74</td><td>92.83</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Random Forest</td>
+                        <td>93.92</td><td>93.99</td><td>93.81</td><td>93.88</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">XGBoost</td>
+                        <td>94.03</td><td>94.06</td><td>93.96</td><td>94.01</td>
+                    </tr>
+                    <tr style="background: #e8f5e9; font-weight: 700; color: #166534; border-bottom: 1px solid #113c7a;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #bbf7d0;">Voting Ensemble (FitVision Final)</td>
+                        <td>94.52</td><td>94.56</td><td>94.45</td><td>94.50</td>
+                    </tr>
+
+                    <!-- DEADLIFT -->
+                    <tr style="background: #113c7a; color: #fff; font-weight: 700;">
+                        <td colspan="5" style="text-align:left; padding: 4px 10px; font-size: 10.5px;">2. ท่า Deadlift (Binary Classification)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Logistic Regression</td>
+                        <td>60.63</td><td>58.62</td><td>60.87</td><td>57.38</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Gradient Boosting</td>
+                        <td>75.67</td><td>71.72</td><td>76.36</td><td>72.53</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">LightGBM</td>
+                        <td>83.37</td><td>79.03</td><td>83.53</td><td>80.51</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">CatBoost</td>
+                        <td>86.77</td><td>82.69</td><td>86.95</td><td>84.28</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Multi-Layer Perceptron (NN)</td>
+                        <td>87.22</td><td>83.20</td><td>87.49</td><td>84.80</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Decision Tree</td>
+                        <td>87.52</td><td>83.54</td><td>87.17</td><td>84.99</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">XGBoost</td>
+                        <td>89.03</td><td>85.29</td><td>88.97</td><td>86.78</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">K-Nearest Neighbors</td>
+                        <td>92.27</td><td>88.99</td><td>93.24</td><td>90.70</td>
+                    </tr>
+                    <tr style="background: #e8f5e9; font-weight: 700; color: #166534; border-bottom: 1px solid #113c7a;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #bbf7d0;">Random Forest (FitVision Final)</td>
+                        <td>93.22</td><td>91.00</td><td>93.52</td><td>91.65</td>
+                    </tr>
+
+                    <!-- BENCH PRESS -->
+                    <tr style="background: #113c7a; color: #fff; font-weight: 700;">
+                        <td colspan="5" style="text-align:left; padding: 4px 10px; font-size: 10.5px;">3. ท่า Bench Press (Binary Classification)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Logistic Regression</td>
+                        <td>90.70</td><td>89.36</td><td>90.92</td><td>90.01</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Gradient Boosting</td>
+                        <td>98.23</td><td>97.67</td><td>98.53</td><td>98.08</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Decision Tree</td>
+                        <td>98.44</td><td>98.06</td><td>98.55</td><td>98.30</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Multi-Layer Perceptron (NN)</td>
+                        <td>98.60</td><td>98.09</td><td>98.91</td><td>98.47</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">K-Nearest Neighbors</td>
+                        <td>98.70</td><td>98.22</td><td>99.00</td><td>98.58</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">LightGBM</td>
+                        <td>98.98</td><td>98.59</td><td>99.20</td><td>98.88</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">Random Forest</td>
+                        <td>99.31</td><td>99.05</td><td>99.44</td><td>99.24</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">CatBoost</td>
+                        <td>99.36</td><td>99.11</td><td>99.49</td><td>99.30</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fff !important;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #e2e8f0;">XGBoost</td>
+                        <td>99.55</td><td>99.38</td><td>99.64</td><td>99.51</td>
+                    </tr>
+                    <tr style="background: #e8f5e9; font-weight: 700; color: #166534;">
+                        <td style="text-align:left; padding:4px 10px; border-right: 1px solid #bbf7d0;">Voting Ensemble (FitVision Final)</td>
+                        <td>99.45</td><td>99.00</td><td>99.50</td><td>99.40</td>
+                    </tr>
+                </table>
+                <div style="padding: 6px 10px; background: #f8fafc; font-size: 10px; color: #475569; border-top: 1px solid #cbd5e1; text-align: center; font-style: italic;">
+                    <strong>ตารางที่ 1:</strong> เปรียบเทียบประสิทธิภาพอัลกอริทึม Machine Learning แบบต่างๆ ในการจำแนกประเภทข้อผิดพลาดทั้ง 3 ท่าออกกำลังกาย
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                <div style="background: #f8fafc; border: 1.5px solid #c5d1e0; border-radius: 6px; padding: 10px;">
+                    <div style="font-weight: 700; color: #113c7a; font-size: 11.5px; margin-bottom: 4px;">🎯 Squat: ประสิทธิภาพสูงสุด</div>
+                    <div style="font-size: 10.5px; color: #475569; line-height: 1.5;">พบว่า <strong>Voting Ensemble (XGBoost + RF)</strong> ให้ความแม่นยำสูงสุด <strong>94.52%</strong> เหมาะสมที่สุดสำหรับการจำแนกข้อผิดพลาดแบบละเอียด (6 Classes) เพราะผสานการทำงานของกลุ่ม Boosting และ Bagging เข้าด้วยกัน</div>
+                </div>
+                <div style="background: #f8fafc; border: 1.5px solid #c5d1e0; border-radius: 6px; padding: 10px;">
+                    <div style="font-weight: 700; color: #113c7a; font-size: 11.5px; margin-bottom: 4px;">⚡ Deadlift: ลดการใช้ทรัพยากร</div>
+                    <div style="font-size: 10.5px; color: #475569; line-height: 1.5;">สำหรับท่าที่มี 2 Classes เปลี่ยนมาใช้โมเดลเดี่ยวอย่าง <strong>Random Forest (F1: 91.65%)</strong> แทนอัลกอริทึมที่ซับซ้อน เพื่อประหยัด RAM บนเชิร์ฟเวอร์ให้เหมาะสมกับขีดจำกัด 512MB</div>
+                </div>
+                <div style="background: #f8fafc; border: 1.5px solid #c5d1e0; border-radius: 6px; padding: 10px;">
+                    <div style="font-weight: 700; color: #113c7a; font-size: 11.5px; margin-bottom: 4px;">📈 Bench Press: แม่นยำสม่ำเสมอ</div>
+                    <div style="font-size: 10.5px; color: #475569; line-height: 1.5;">การใช้ <strong>Voting Ensemble (Soft Voting)</strong> ให้ผลลัพธ์ที่ยอดเยี่ยม (Accuracy <strong>99.45%</strong>) ช่วยตัดสินและแยกแยะความถูกต้องของการยกในจังหวะการจัดวางแขนและระยะไหล่ได้อย่างเฉียบขาด</div>
+                </div>
+            </div>
+
+        </div> <!-- /.col-right -->
+    </div> <!-- /.main-grid -->
+
+    <!-- ════════ FOOTER ════════ -->
+    <div class="poster-footer">
+        <div>
+            <strong>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</strong><br>
+            College of Computing, Khon Kaen University
+        </div>
+        <div class="footer-center">
+            ปริญญานิพนธ์: FitVision
+        </div>
+        <div style="text-align: right; line-height: 1.5;">
+            <strong>สมาชิก:</strong> ...<br>
+            <strong>อาจารย์ที่ปรึกษา:</strong> ...
+        </div>
+    </div>
+
+</body>
+
+</html>

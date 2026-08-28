@@ -19,6 +19,18 @@ primary_region = "sin"  # Singapore — closest to Thailand
     soft_limit = 25
     hard_limit = 50
 
+  [[http_service.checks]]
+    grace_period = "30s"
+    interval = "15s"
+    method = "get"
+    path = "/health"
+    protocol = "http"
+    timeout = "5s"
+
+[mounts]
+  source = "fitvision_data"
+  destination = "/data"
+
 [[vm]]
   size = "shared-cpu-1x"
   memory = "512mb"            # Upgrade to 512MB for safety; still cheap (~$2/mo)

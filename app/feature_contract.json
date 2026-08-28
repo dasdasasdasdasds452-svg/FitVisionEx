@@ -1,0 +1,41 @@
+{
+    "version": "1.0.0",
+    "description": "Standardized feature definitions for FitVision models.",
+    "features13": [
+        {"name": "left_elbow_angle", "range": [0, 180]},
+        {"name": "right_elbow_angle", "range": [0, 180]},
+        {"name": "left_shoulder_angle", "range": [0, 180]},
+        {"name": "right_shoulder_angle", "range": [0, 180]},
+        {"name": "left_hip_angle", "range": [0, 180]},
+        {"name": "right_hip_angle", "range": [0, 180]},
+        {"name": "left_knee_angle", "range": [0, 180]},
+        {"name": "right_knee_angle", "range": [0, 180]},
+        {"name": "shoulder_width", "range": [0, 1]},
+        {"name": "hip_width", "range": [0, 1]},
+        {"name": "torso_length", "range": [0, 1]},
+        {"name": "elbow_symmetry", "range": [0, 180]},
+        {"name": "knee_symmetry", "range": [0, 180]}
+    ],
+    "features20": [
+        {"name": "left_knee_angle", "range": [0, 180]},
+        {"name": "right_knee_angle", "range": [0, 180]},
+        {"name": "left_hip_angle", "range": [0, 180]},
+        {"name": "right_hip_angle", "range": [0, 180]},
+        {"name": "left_ankle_angle", "range": [0, 180]},
+        {"name": "right_ankle_angle", "range": [0, 180]},
+        {"name": "spine_angle", "range": [0, 180]},
+        {"name": "torso_lean", "range": [0, 180]},
+        {"name": "left_knee_lateral", "range": [0, 1]},
+        {"name": "right_knee_lateral", "range": [0, 1]},
+        {"name": "symmetry_score", "range": [0, 100]},
+        {"name": "hip_depth", "range": [0, 1]},
+        {"name": "avg_knee_angle", "range": [0, 180]},
+        {"name": "avg_hip_angle", "range": [0, 180]},
+        {"name": "knee_hip_ratio", "range": [0, 10]},
+        {"name": "knee_depth_ratio", "range": [0, 1]},
+        {"name": "ankle_asymmetry", "range": [0, 90]},
+        {"name": "hip_asymmetry", "range": [0, 90]},
+        {"name": "total_lateral", "range": [0, 1]},
+        {"name": "lean_consistency", "range": [0, 180]}
+    ]
+}

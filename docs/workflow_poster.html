@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FitVision - Workflow Poster Section</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sarabun:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a2e;
+      width: 1300px;
+      padding: 0;
+    }
+
+    /* ─── Section Header (matching KKU poster style) ─── */
+    .section-title {
+      background: #1B2A4A;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 16px;
+      margin-bottom: 14px;
+      border-radius: 0;
+    }
+
+    .content-area {
+      padding: 0 12px 16px 12px;
+    }
+
+    /* ─── Pipeline Section ─── */
+    .pipeline-container {
+      margin-bottom: 16px;
+    }
+
+    .pipeline-flow {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .pipe-step {
+      background: #f4f7fb;
+      border: 1.5px solid #c5d1e0;
+      border-radius: 8px;
+      padding: 10px 10px;
+      text-align: center;
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pipe-step .step-circle {
+      background: #1B2A4A;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+    .pipe-step .step-title-en {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1B2A4A;
+      line-height: 1.2;
+    }
+
+    .pipe-step .step-desc {
+      font-size: 10.5px;
+      color: #64748b;
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+
+    .pipe-step .step-badge {
+      margin-top: 5px;
+      font-size: 9.5px;
+      color: #fff;
+      background: #2d5a8e;
+      border-radius: 8px;
+      padding: 2px 7px;
+      font-weight: 600;
+    }
+
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      color: #1B2A4A;
+      margin: 0 5px;
+      font-weight: bold;
+    }
+
+    .figure-caption {
+      text-align: center;
+      font-size: 11px;
+      color: #475569;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .figure-caption strong {
+      font-style: normal;
+      color: #1B2A4A;
+    }
+
+    /* ─── Split text ─── */
+    .split-text {
+      text-align: center;
+      font-size: 11.5px;
+      color: #475569;
+      margin: 12px 0 4px;
+      font-weight: 600;
+    }
+
+    .split-arrows {
+      display: flex;
+      justify-content: center;
+      gap: 260px;
+      margin-bottom: 6px;
+    }
+
+    .split-arrows .arrow-down {
+      width: 2px;
+      height: 22px;
+      background: #1B2A4A;
+      position: relative;
+    }
+
+    .split-arrows .arrow-down::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: -5px;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #1B2A4A;
+    }
+
+    /* ─── Three Columns ─── */
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .model-col {
+      border: 1.5px solid #d1d8e3;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .model-col-header {
+      padding: 7px 12px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .squat-header {
+      background: #1B2A4A;
+    }
+
+    .deadlift-header {
+      background: #1B4A3A;
+    }
+
+    .bench-header {
+      background: #4A1B2A;
+    }
+
+    .model-col-body {
+      padding: 10px 11px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    .feat-group-title {
+      font-weight: 700;
+      color: #1B2A4A;
+      font-size: 11.5px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2px;
+    }
+
+    .feat-group-title:first-child {
+      margin-top: 0;
+    }
+
+    .feat-item {
+      padding-left: 10px;
+      position: relative;
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+
+    .feat-item::before {
+      content: '•';
+      position: absolute;
+      left: 1px;
+      color: #1B2A4A;
+      font-weight: bold;
+    }
+
+    .class-box {
+      margin-top: 8px;
+      background: #f0f4fa;
+      border: 1px solid #c5d1e0;
+      border-radius: 5px;
+      padding: 8px 10px;
+    }
+
+    .class-box-title {
+      font-weight: 700;
+      font-size: 11.5px;
+      color: #1B2A4A;
+      margin-bottom: 3px;
+    }
+
+    .class-box-detail {
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+
+    .algo-badges {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .algo-badge {
+      font-size: 9px;
+      font-weight: 600;
+      background: #1B2A4A;
+      color: #fff;
+      border-radius: 7px;
+      padding: 2px 6px;
+    }
+
+    .algo-badge-green {
+      background: #1B4A3A;
+    }
+
+    .algo-badge-red {
+      background: #4A1B2A;
+    }
+
+    .output-box {
+      margin-top: 8px;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 5px;
+      padding: 6px 10px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #2e7d32;
+    }
+
+    .output-incorrect {
+      background: #ffebee;
+      border-color: #ef9a9a;
+      color: #c62828;
+      margin-top: 4px;
+    }
+
+    /* ─── Comparison Table ─── */
+    .comparison-section {
+      margin-top: 16px;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+    }
+
+    .comp-table th {
+      background: #1B2A4A;
+      color: #fff;
+      padding: 6px 10px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .comp-table td {
+      padding: 5px 10px;
+      border: 1px solid #d1d8e3;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .comp-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .comp-table td:first-child {
+      font-weight: 600;
+      text-align: left;
+      color: #1B2A4A;
+      background: #f0f4fa !important;
+    }
+
+    .inner-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1B2A4A;
+      margin: 14px 0 6px;
+      padding-bottom: 3px;
+      border-bottom: 2px solid #1B2A4A;
+    }
+
+    .stage-label {
+      font-weight: 700;
+      color: #1B2A4A;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION: Innovations & Techniques (แนวคิดและนวัตกรรม)    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <div class="section-title">Innovations & Technical Highlights (แนวคิดและนวัตกรรมที่พัฒนา)</div>
+
+  <div class="content-area">
+    <div class="three-col" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+
+      <!-- Highlight 1 -->
+      <div style="background: #f4f7fb; border: 1.5px solid #c5d1e0; border-radius: 6px; padding: 12px;">
+        <div
+          style="color: #1B2A4A; font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <span>⚙️</span> Domain-Specific Feature Engineering
+        </div>
+        <div style="font-size: 11px; color: #475569; line-height: 1.5;">
+          แทนที่จะใช้ภาพต้นฉบับป้อนเข้า CNN เราสกัด <strong>33-point 3D Landmarks</strong> ด้วย MediaPipe แล้วคำนวณ
+          <strong>Joint Angles, Distances และ Symmetry</strong> ด้วยหลักตรีโกณมิติ ทำให้ชุดข้อมูลมีขนาดเล็กมาก
+          โมเดลจึงทำงานได้เร็วและเบา
+        </div>
+      </div>
+
+      <!-- Highlight 2 -->
+      <div style="background: #e8f5e9; border: 1.5px solid #a5d6a7; border-radius: 6px; padding: 12px;">
+        <div
+          style="color: #1B4A3A; font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <span>🚀</span> Memory-Optimized Model Serving
+        </div>
+        <div style="font-size: 11px; color: #475569; line-height: 1.5;">
+          พัฒนาระบบ <strong>Lazy-loading & Aggressive Garbage Collection</strong> สลับโมเดลเข้าออก RAM อัตโนมัติ
+          ทำให้สามารถรันโมเดล Machine Learning ขนาดใหญ่แบบ Ensemble บน Cloud Server ที่มี <strong>RAM จำกัดเพียง
+            512MB</strong> ได้โดยไม่เกิด OOM
+        </div>
+      </div>
+
+      <!-- Highlight 3 -->
+      <div style="background: #fff3e0; border: 1.5px solid #ffcc80; border-radius: 6px; padding: 12px;">
+        <div
+          style="color: #e65100; font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <span>🔀</span> Voting Ensemble Architecture
+        </div>
+        <div style="font-size: 11px; color: #475569; line-height: 1.5;">
+          ผสานพลังระหว่าง <strong>XGBoost</strong> และ <strong>Random Forest</strong> (Soft Voting) เพื่อเพิ่มความแม่นยำ
+          (94.5%) รวมถึงแก้ปัญหา Class Imbalance ด้วยเทคนิค <strong>SMOTE</strong> ให้เรียนรู้ท่าทางที่ผิด (Error
+          Classes) ได้ครอบคลุมขึ้น
+        </div>
+      </div>
+
+      <!-- Highlight 4 -->
+      <div style="background: #f3e5f5; border: 1.5px solid #ce93d8; border-radius: 6px; padding: 12px;">
+        <div
+          style="color: #4a148c; font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <span>🌐</span> Distributed Edge-Cloud Inference
+        </div>
+        <div style="font-size: 11px; color: #475569; line-height: 1.5;">
+          แยกการทำงานโดยให้ Web Browser (Edge) คำนวณรันผล MediaPipe แล้วส่งแค่ข้อมูลคณิตศาสตร์ไปหา Backend (Cloud)
+          เพื่อทำ ML Classification <strong>ลดขนาด Data Payload จากวิดีโอหลาน MB เหลือเพียงไม่กี่ KB/frame</strong>
+          ปลดล็อค Real-time analysis คล่องตัว
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION: Methodology (วิธีการดำเนินงาน)              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <div class="section-title">Methodology — Workflow of 3 Models (Squat, Deadlift, Bench Press)</div>
+
+  <div class="content-area">
+
+    <!-- ── General Pipeline ── -->
+    <div class="inner-section-title">General Pipeline — Shared Across All 3 Models</div>
+
+    <div class="pipeline-container">
+      <div class="pipeline-flow">
+        <div class="pipe-step">
+          <div class="step-circle">1</div>
+          <div class="step-title-en">Video Input</div>
+          <div class="step-desc">Receive video from camera or uploaded file</div>
+          <div class="step-badge">Camera / File</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step" style="width:200px">
+          <div class="step-circle">2</div>
+          <div class="step-title-en">Person Detection</div>
+          <div class="step-desc">Detect person using pre-trained model, draw bounding box, crop ROI</div>
+          <div class="step-badge">YOLOv8s</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step" style="width:200px">
+          <div class="step-circle">3</div>
+          <div class="step-title-en">Pose Estimation</div>
+          <div class="step-desc">Identify 33 body landmarks, output (x, y) coordinates</div>
+          <div class="step-badge">MediaPipe Pose</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <div class="step-circle">4</div>
+          <div class="step-title-en">Feature Extraction</div>
+          <div class="step-desc">Compute joint angles, distances &amp; symmetry</div>
+          <div class="step-badge">Trigonometry</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <div class="step-circle">5</div>
+          <div class="step-title-en">ML Classification</div>
+          <div class="step-desc">Classify posture as Correct or Incorrect</div>
+          <div class="step-badge">scikit-learn</div>
+        </div>
+      </div>
+      <div class="figure-caption"><strong>Figure 1.</strong> General pipeline shared across all three exercise models.
+      </div>
+    </div>
+
+    <div class="split-text">Steps 4–5 are customized for each exercise type ▼</div>
+
+    <!-- ── Three Model Columns ── -->
+    <div class="inner-section-title">Exercise-Specific Feature Extraction &amp; Classification</div>
+
+    <div class="three-col">
+
+      <!-- ─── SQUAT ─── -->
+      <div class="model-col">
+        <div class="model-col-header squat-header">Squat Model</div>
+        <div class="model-col-body">
+
+          <div class="feat-group-title">Feature Extraction — 20 Features</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:4px; padding:0;">12 Base Features:</div>
+          <div class="feat-item">Knee angles L/R (hip–knee–ankle)</div>
+          <div class="feat-item">Hip angles L/R (shoulder–hip–knee)</div>
+          <div class="feat-item">Ankle angles L/R (knee–ankle–foot)</div>
+          <div class="feat-item">Spine angle &amp; Torso lean</div>
+          <div class="feat-item">Lateral knee deviation L/R</div>
+          <div class="feat-item">Symmetry score &amp; Hip depth</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:6px; padding:0;">8 Engineered Features:
+          </div>
+          <div class="feat-item">avg_knee, avg_hip, knee/hip ratio</div>
+          <div class="feat-item">knee_depth_ratio (avg_knee / 90°)</div>
+          <div class="feat-item">ankle &amp; hip asymmetry</div>
+          <div class="feat-item">total_lateral, lean_consistency</div>
+
+          <div class="class-box">
+            <div class="class-box-title">2-Stage Classification Pipeline</div>
+            <div class="class-box-detail">
+              <div style="font-size:9.5px; color:#475569; margin-bottom:4px; font-style:italic;">Trained on Powerlifting
+                Dataset (Raw 3D Landmarks)</div>
+
+              <div class="stage-label">Stage 1 — Binary Model:</div>
+              Determines Correct vs. Incorrect form
+              <div class="algo-badges">
+                <span class="algo-badge">XGBoost</span>
+                <span class="algo-badge">Random Forest</span>
+              </div>
+
+              <div class="stage-label" style="margin-top:8px;">Stage 2 — Multi-class Model:</div>
+              Diagnoses specific error type (6 classes)
+              <div class="algo-badges">
+                <span class="algo-badge">XGBoost</span>
+                <span class="algo-badge">Random Forest</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-box">✅ Correct</div>
+          <div class="output-box output-incorrect">
+            ❌ Shallow Squat | Forward Lean | Knees Caving | Heels Off | Asymmetric
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── DEADLIFT ─── -->
+      <div class="model-col">
+        <div class="model-col-header deadlift-header">Deadlift Model</div>
+        <div class="model-col-body">
+
+          <div class="feat-group-title">Feature Extraction — 13 Features</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:4px; padding:0;">8 Joint Angles:</div>
+          <div class="feat-item">Elbow angles L/R (shoulder–elbow–wrist)</div>
+          <div class="feat-item">Shoulder angles L/R (elbow–shoulder–hip)</div>
+          <div class="feat-item">Hip angles L/R (shoulder–hip–knee)</div>
+          <div class="feat-item">Knee angles L/R (hip–knee–ankle)</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:6px; padding:0;">3 Distances (Euclidean):
+          </div>
+          <div class="feat-item">Shoulder width</div>
+          <div class="feat-item">Hip width</div>
+          <div class="feat-item">Torso length</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:6px; padding:0;">2 Symmetry Measures:</div>
+          <div class="feat-item">|Left elbow angle − Right elbow angle|</div>
+          <div class="feat-item">|Left knee angle − Right knee angle|</div>
+
+          <div class="class-box">
+            <div class="class-box-title">Binary Classification</div>
+            <div class="class-box-detail">
+              <strong>Random Forest Classifier</strong><br>
+              Classifies form as Correct or Incorrect with confidence percentage.
+              <div class="algo-badges">
+                <span class="algo-badge algo-badge-green">Random Forest</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-box">✅ Correct + confidence %</div>
+          <div class="output-box output-incorrect">❌ Incorrect → "Check your form"</div>
+        </div>
+      </div>
+
+      <!-- ─── BENCH PRESS ─── -->
+      <div class="model-col">
+        <div class="model-col-header bench-header">Bench Press Model</div>
+        <div class="model-col-body">
+
+          <div class="feat-group-title">Feature Extraction — 13 Features</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:4px; padding:0;">8 Joint Angles (upper body
+            focus):</div>
+          <div class="feat-item">Elbow angles L/R (shoulder–elbow–wrist)</div>
+          <div class="feat-item">Shoulder angles L/R (elbow–shoulder–hip)</div>
+          <div class="feat-item">Hip angles L/R (shoulder–hip–knee)</div>
+          <div class="feat-item">Knee angles L/R (hip–knee–ankle)</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:6px; padding:0;">3 Distances (Euclidean):
+          </div>
+          <div class="feat-item">Shoulder width</div>
+          <div class="feat-item">Hip width</div>
+          <div class="feat-item">Torso length</div>
+
+          <div class="feat-group-title"
+            style="font-size:10.5px; color:#475569; border:none; margin-top:6px; padding:0;">2 Symmetry Measures:</div>
+          <div class="feat-item">|Left elbow angle − Right elbow angle|</div>
+          <div class="feat-item">|Left knee angle − Right knee angle|</div>
+
+          <div class="class-box">
+            <div class="class-box-title">Voting Ensemble Classification</div>
+            <div class="class-box-detail">
+              <strong>Voting Classifier (Soft Voting)</strong><br>
+              Combines 2 models for decision.
+              <div class="algo-badges">
+                <span class="algo-badge algo-badge-red">XGBoost</span>
+                <span class="algo-badge algo-badge-red">Random Forest</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-box">✅ Correct</div>
+          <div class="output-box output-incorrect">❌ Incorrect → "Keep elbows tucked, back arched, wrists straight"
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="figure-caption"><strong>Figure 2.</strong> Exercise-specific feature extraction and classification
+      details for each of the three models.</div>
+
+    <!-- ── Comparison Table ── -->
+    <div class="comparison-section">
+      <div class="inner-section-title">Comparison of 3 Models</div>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width:160px;"></th>
+            <th>Squat</th>
+            <th>Deadlift</th>
+            <th>Bench Press</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Number of Features</td>
+            <td>20 (12 base + 8 engineered)</td>
+            <td>13</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>Feature Focus</td>
+            <td>Knee, hip, ankle angles,<br>spine, lateral deviation</td>
+            <td>Full-body joint angles,<br>distances, symmetry</td>
+            <td>Elbow/shoulder angles,<br>distances, symmetry</td>
+          </tr>
+          <tr>
+            <td>Classification Type</td>
+            <td>2-Stage (Binary + Multi-class)</td>
+            <td>Binary</td>
+            <td>Binary</td>
+          </tr>
+          <tr>
+            <td>Algorithm</td>
+            <td>2-Model Voting Ensemble<br>(XGBoost + RF)</td>
+            <td>Random Forest</td>
+            <td>2-Model Voting Ensemble<br>(XGB+RF)</td>
+          </tr>
+          <tr>
+            <td>Error Types</td>
+            <td>5 (Shallow, Forward Lean,<br>Knees Caving, Heels Off,<br>Asymmetric)</td>
+            <td>General form check</td>
+            <td>Elbows / Back / Wrists</td>
+          </tr>
+          <tr>
+            <td>Data Balancing</td>
+            <td>SMOTE</td>
+            <td>SMOTE</td>
+            <td>SMOTE</td>
+          </tr>
+          <tr>
+            <td>Model File</td>
+            <td>squat_form.pkl +<br>squat_form_detailed.pkl</td>
+            <td>deadlift_form.pkl</td>
+            <td>benchpress_form.pkl</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="figure-caption"><strong>Table 1.</strong> Comparison of feature extraction and classification
+        approaches across the three exercise models.</div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SECTION: Results (ผลการดำเนินงาน)                      -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <div class="section-title">Model Evaluation Results (Squat Posture Analysis)</div>
+
+  <div class="content-area">
+    <div style="font-size: 11px; color:#334155; margin-bottom: 10px; line-height: 1.5;">
+      To validate our approach for Squat analysis, we evaluated 9 different machine learning algorithms on the extracted
+      20-dimensional feature set. The dataset consisted of 21,451 frames of 3D landmarks.
+      The results show that our proposed <strong>2-Model Voting Ensemble (XGBoost + Random Forest)</strong> achieved the
+      highest performance across all metrics.
+    </div>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="text-align: left; padding-left:14px;">Machine Learning Algorithm</th>
+          <th>Accuracy</th>
+          <th>F1 Score</th>
+          <th>Precision</th>
+          <th>Recall</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="background: #fff !important;">Logistic Regression</td>
+          <td>72.52%</td>
+          <td>72.40%</td>
+          <td>72.43%</td>
+          <td>72.38%</td>
+        </tr>
+        <tr>
+          <td style="background: #f8fafc !important;">Multi-Layer Perceptron (NN)</td>
+          <td>80.75%</td>
+          <td>80.74%</td>
+          <td>81.46%</td>
+          <td>81.19%</td>
+        </tr>
+        <tr>
+          <td style="background: #fff !important;">Gradient Boosting</td>
+          <td>84.78%</td>
+          <td>84.65%</td>
+          <td>84.95%</td>
+          <td>84.53%</td>
+        </tr>
+        <tr>
+          <td style="background: #f8fafc !important;">Decision Tree</td>
+          <td>86.51%</td>
+          <td>86.46%</td>
+          <td>86.45%</td>
+          <td>86.47%</td>
+        </tr>
+        <tr>
+          <td style="background: #fff !important;">K-Nearest Neighbors</td>
+          <td>89.56%</td>
+          <td>89.52%</td>
+          <td>89.51%</td>
+          <td>89.54%</td>
+        </tr>
+        <tr>
+          <td style="background: #f8fafc !important;">CatBoost</td>
+          <td>92.24%</td>
+          <td>92.20%</td>
+          <td>92.31%</td>
+          <td>92.12%</td>
+        </tr>
+        <tr>
+          <td style="background: #fff !important;">LightGBM</td>
+          <td>92.87%</td>
+          <td>92.83%</td>
+          <td>92.97%</td>
+          <td>92.74%</td>
+        </tr>
+        <tr>
+          <td style="background: #f8fafc !important;">Random Forest</td>
+          <td>93.92%</td>
+          <td>93.88%</td>
+          <td>93.99%</td>
+          <td>93.81%</td>
+        </tr>
+        <tr>
+          <td style="background: #fff !important;">XGBoost</td>
+          <td>94.03%</td>
+          <td>94.01%</td>
+          <td>94.06%</td>
+          <td>93.96%</td>
+        </tr>
+        <tr style="border: 2px solid #1B2A4A;">
+          <td style="background: #e8f5e9 !important; color: #1B4A3A; font-weight: 800;">🚀 Proposed Voting Ensemble
+            (XGB+RF)</td>
+          <td style="background: #e8f5e9; color: #1B4A3A; font-weight: 800;">94.52%</td>
+          <td style="background: #e8f5e9; color: #1B4A3A; font-weight: 800;">94.50%</td>
+          <td style="background: #e8f5e9; color: #1B4A3A; font-weight: 800;">94.56%</td>
+          <td style="background: #e8f5e9; color: #1B4A3A; font-weight: 800;">94.45%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="figure-caption"><strong>Table 2.</strong> Performance comparison of various classification models for
+      Squat form analysis.</div>
+  </div>
+
+</body>
+
+</html>

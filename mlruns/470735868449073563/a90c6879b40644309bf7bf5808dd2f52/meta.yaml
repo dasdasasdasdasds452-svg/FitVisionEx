@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/470735868449073563/a90c6879b40644309bf7bf5808dd2f52/artifacts
+end_time: 1784449259933
+entry_point_name: ''
+experiment_id: '470735868449073563'
+lifecycle_stage: active
+run_id: a90c6879b40644309bf7bf5808dd2f52
+run_name: resilient-sloth-813
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784449157325
+status: 3
+tags: []
+user_id: tonkla

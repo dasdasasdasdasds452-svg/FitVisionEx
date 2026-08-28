@@ -1,10 +1,18 @@
 """FitVision — Pydantic schemas"""
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, model_validator
 from typing import Optional
+import math
 
 class Features13(BaseModel):
     """13 features for deadlift / exercise classifier"""
-    features: list[float]  # exactly 13 values
+    features: list[float] = Field(min_length=13, max_length=13)
+    
+    @model_validator(mode='after')
+    def check_finite(self):
+        for v in self.features:
+            if not math.isfinite(v):
+                raise ValueError(f"Feature values must be finite numbers, got {v}")
+        return self
 
 class SquatFeatures(BaseModel):
     """12 raw squat features — engineered features computed server-side"""
@@ -20,6 +28,13 @@ class SquatFeatures(BaseModel):
     right_knee_lateral: float
     symmetry_score:     float
     hip_depth:          float
+
+    @model_validator(mode='after')
+    def check_finite(self):
+        for k, v in self.model_dump().items():
+            if not math.isfinite(v):
+                raise ValueError(f"Squat feature '{k}' must be finite, got {v}")
+        return self
 
 class ExercisePrediction(BaseModel):
     exercise:   str

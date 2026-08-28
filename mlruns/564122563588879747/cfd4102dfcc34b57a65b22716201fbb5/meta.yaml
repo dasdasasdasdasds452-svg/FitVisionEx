@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/564122563588879747/cfd4102dfcc34b57a65b22716201fbb5/artifacts
+end_time: 1784885094829
+entry_point_name: ''
+experiment_id: '564122563588879747'
+lifecycle_stage: active
+run_id: cfd4102dfcc34b57a65b22716201fbb5
+run_name: exultant-hare-562
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784885060460
+status: 3
+tags: []
+user_id: tonkla

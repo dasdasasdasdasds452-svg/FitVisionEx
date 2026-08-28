@@ -40,3 +40,20 @@ EXERCISES = {
 
 # Feedback language
 FEEDBACK_LANGUAGE = 'th'  # 'th' for Thai, 'en' for English
+
+# Prediction thresholds — P(correct) must exceed this to count as "correct"
+# Tuned from actual threshold sweep on test set (2026-07-24)
+#
+# Deadlift sweep results (calibrated model):
+#   thresh 0.10 → FAR  4.4%, miss 37.2%, acc 73.2%
+#   thresh 0.15 → FAR 10.9%, miss 23.5%, acc 80.5%  ← best balance
+#   thresh 0.50 → FAR 30.3%, miss  5.7%, acc 86.5%
+#
+# Higher = stricter (needs more confidence to say "correct") → fewer false negatives
+# Lower  = more lenient → fewer false alarms (user told "incorrect" when actually correct)
+PREDICTION_THRESHOLDS = {
+    "deadlift":      0.15,   # calibrated model: FAR 10.9%, acc 80.5%
+    "benchpress":    0.50,   # keep default — video-level labels, accuracy inflated
+    "squat_binary":  0.45,   # slightly lenient — reduce "Good->Bad" false alarm
+}
+

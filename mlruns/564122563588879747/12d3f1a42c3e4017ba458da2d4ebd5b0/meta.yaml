@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/fit/FitVision/mlruns/564122563588879747/12d3f1a42c3e4017ba458da2d4ebd5b0/artifacts
+end_time: 1784448457064
+entry_point_name: ''
+experiment_id: '564122563588879747'
+lifecycle_stage: active
+run_id: 12d3f1a42c3e4017ba458da2d4ebd5b0
+run_name: nimble-jay-54
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784448445133
+status: 3
+tags: []
+user_id: tonkla

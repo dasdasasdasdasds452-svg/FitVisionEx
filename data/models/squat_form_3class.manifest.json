@@ -1,0 +1,20 @@
+{
+    "model_name": "squat_form_3class",
+    "description": "Squat 3-Class RF Model",
+    "features": [
+        "left_knee_angle",
+        "right_knee_angle",
+        "left_hip_angle",
+        "right_hip_angle",
+        "left_ankle_angle",
+        "right_ankle_angle",
+        "spine_angle",
+        "torso_lean",
+        "left_knee_lateral",
+        "right_knee_lateral",
+        "symmetry_score",
+        "hip_depth"
+    ],
+    "created_at": "2026-07-19T14:58:24.148269",
+    "sha256": "7086aa24643d599228cb171659ebb308a75074bbb18968257ddb77f0612c319e"
+}

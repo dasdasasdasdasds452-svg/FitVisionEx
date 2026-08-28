@@ -90,11 +90,11 @@ class FeatureExtractor:
             'shoulder_width': np.linalg.norm(np.array(left_shoulder) - np.array(right_shoulder)),
             'hip_width': np.linalg.norm(np.array(left_hip) - np.array(right_hip)),
             'torso_length': np.linalg.norm(np.array(left_shoulder) - np.array(left_hip)),
-            
-            # Symmetry
-            'elbow_symmetry': abs(features.get('left_elbow_angle', 0) - features.get('right_elbow_angle', 0)) if 'left_elbow_angle' in locals() else 0,
-            'knee_symmetry': abs(features.get('left_knee_angle', 0) - features.get('right_knee_angle', 0)) if 'left_knee_angle' in locals() else 0,
         }
+        
+        # Calculate Symmetry
+        features['elbow_symmetry'] = abs(features.get('left_elbow_angle', 0) - features.get('right_elbow_angle', 0))
+        features['knee_symmetry'] = abs(features.get('left_knee_angle', 0) - features.get('right_knee_angle', 0))
         
         return features
     
