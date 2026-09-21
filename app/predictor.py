@@ -3,14 +3,172 @@ FitVision — Predictor (Refactored)
 
 Stateless class-based design. No global mutable state.
 Thread-safe — supports uvicorn --workers N.
+Includes Injury Risk Assessment module for biomechanical risk scoring.
 """
 import structlog
 import gc
 import numpy as np
 import joblib
 from pathlib import Path
+from typing import Optional
 
 logger = structlog.get_logger("fitvision.predictor")
+
+
+# ── Injury Risk Assessment ────────────────────────────────────────────────────
+# Maps ML prediction confidence + biomechanical features → injury risk level.
+# This addresses the thesis title: "ประเมินความเสี่ยงการบาดเจ็บ"
+
+RISK_LEVELS = {
+    "low":      {"label": "Low Risk",      "label_th": "ความเสี่ยงต่ำ",     "color": "#22c55e"},
+    "medium":   {"label": "Medium Risk",   "label_th": "ความเสี่ยงปานกลาง", "color": "#f59e0b"},
+    "high":     {"label": "High Risk",     "label_th": "ความเสี่ยงสูง",     "color": "#f97316"},
+    "critical": {"label": "Critical Risk", "label_th": "ความเสี่ยงวิกฤต",   "color": "#ef4444"},
+}
+
+
+def assess_injury_risk(
+    exercise: str,
+    form_correct: bool,
+    confidence: float,
+    features: Optional[dict | list] = None,
+    error_code: Optional[int] = None,
+) -> dict:
+    """
+    Compute injury risk assessment from ML prediction and biomechanical features.
+
+    Risk score (0–100) is derived from:
+      1. Form correctness (base risk)
+      2. ML confidence (how certain the model is)
+      3. Exercise-specific biomechanical factors
+
+    Returns dict with: risk_level, risk_score, risk_factors, recommendation
+    """
+    risk_score = 0.0
+    risk_factors: list[str] = []
+
+    # ── Factor 1: Form correctness (0–40 points) ──
+    if not form_correct:
+        # Higher model confidence in "incorrect" → higher risk
+        form_risk = 25.0 + (confidence * 15.0)
+        risk_score += form_risk
+        risk_factors.append("Incorrect form detected")
+    else:
+        # Even correct form can have minor risk if confidence is low
+        if confidence < 0.70:
+            risk_score += 10.0
+            risk_factors.append("Low prediction confidence — form borderline")
+
+    # ── Factor 2: Exercise-specific biomechanical analysis (0–40 points) ──
+    if exercise == "squat" and isinstance(features, dict):
+        avg_knee = (features.get("left_knee_angle", 180) + features.get("right_knee_angle", 180)) / 2
+        spine = features.get("spine_angle", 0)
+        symmetry = features.get("symmetry_score", 0)
+
+        # Deep squat with forward lean → knee/back injury risk
+        if avg_knee < 70 and spine > 35:
+            risk_score += 20.0
+            risk_factors.append("Deep squat with excessive forward lean — lumbar spine stress")
+        elif spine > 40:
+            risk_score += 15.0
+            risk_factors.append("Excessive forward lean — lower back strain risk")
+
+        # Knee valgus (caving in)
+        ll = abs(features.get("left_knee_lateral", 0))
+        rl = abs(features.get("right_knee_lateral", 0))
+        if ll > 0.08 or rl > 0.08:
+            risk_score += 15.0
+            risk_factors.append("Knee valgus detected — ACL/MCL injury risk")
+
+        # Asymmetry
+        if symmetry > 50:
+            risk_score += 10.0
+            risk_factors.append("Significant left-right asymmetry — compensatory injury risk")
+
+        # Heel lift
+        la = features.get("left_ankle_angle", 160)
+        ra = features.get("right_ankle_angle", 160)
+        if la < 60 or ra < 60:
+            risk_score += 10.0
+            risk_factors.append("Heel lifting — ankle mobility issue, fall risk")
+
+    elif exercise == "deadlift" and isinstance(features, list) and len(features) >= 13:
+        # features[4] = left_hip_angle, features[5] = right_hip_angle (approximate)
+        # features[2] = left_shoulder_angle, features[3] = right_shoulder_angle
+        left_hip = features[4] if len(features) > 4 else 180
+        right_hip = features[5] if len(features) > 5 else 180
+        avg_hip = (left_hip + right_hip) / 2
+
+        if not form_correct:
+            # Rounded back during deadlift is the #1 injury cause
+            risk_score += 20.0
+            risk_factors.append("Rounded back detected — severe spinal disc injury risk")
+        if avg_hip < 60:
+            risk_score += 10.0
+            risk_factors.append("Excessive hip flexion — hamstring/lower back strain")
+
+    elif exercise == "benchpress" and isinstance(features, list) and len(features) >= 13:
+        if not form_correct:
+            risk_score += 15.0
+            risk_factors.append("Incorrect bench press form — shoulder impingement risk")
+        # Elbow angles (features[0], features[1])
+        left_elbow = features[0] if len(features) > 0 else 90
+        right_elbow = features[1] if len(features) > 1 else 90
+        elbow_asym = abs(left_elbow - right_elbow)
+        if elbow_asym > 20:
+            risk_score += 10.0
+            risk_factors.append("Uneven elbow positioning — rotator cuff strain risk")
+
+    # ── Factor 3: Squat error-specific risks (0–20 points) ──
+    if exercise == "squat" and error_code is not None and error_code != 0:
+        error_risk_map = {
+            1: ("Shallow squat — reduced muscle activation, not necessarily dangerous", 5),
+            2: ("Forward lean — intervertebral disc compression risk", 20),
+            3: ("Knee valgus — ligament tear risk (ACL/MCL)", 20),
+            4: ("Heel rise — balance instability, Achilles strain", 15),
+            5: ("Asymmetric movement — compensatory overload injury risk", 10),
+        }
+        desc, pts = error_risk_map.get(error_code, ("Unknown error pattern", 10))
+        risk_score += pts
+        if desc not in risk_factors:
+            risk_factors.append(desc)
+
+    # ── Clamp and classify ──
+    risk_score = min(100.0, max(0.0, risk_score))
+
+    if risk_score <= 15:
+        level = "low"
+    elif risk_score <= 40:
+        level = "medium"
+    elif risk_score <= 70:
+        level = "high"
+    else:
+        level = "critical"
+
+    risk_info = RISK_LEVELS[level]
+
+    # Generate recommendation based on risk level
+    recommendations = {
+        "low":      "Form looks safe. Continue with current weight and technique.",
+        "medium":   "Minor form issues detected. Consider reducing weight and focusing on technique.",
+        "high":     "Significant injury risk. Stop and correct form before continuing. Consider consulting a trainer.",
+        "critical": "Immediate injury risk! Stop exercise immediately. Reduce weight significantly and review proper technique.",
+    }
+
+    result = {
+        "risk_level":       level,
+        "risk_label":       risk_info["label"],
+        "risk_label_th":    risk_info["label_th"],
+        "risk_score":       round(risk_score, 1),
+        "risk_color":       risk_info["color"],
+        "risk_factors":     risk_factors if risk_factors else ["No significant risk factors detected"],
+        "recommendation":   recommendations[level],
+    }
+
+    logger.info("RISK: exercise=%s level=%s score=%.1f factors=%d",
+                exercise, level, risk_score, len(risk_factors))
+
+    return result
 
 # ── Label maps ─────────────────────────────────────────────────────────────────
 SQUAT_ERROR_MAP = {
@@ -206,11 +364,14 @@ class ModelRegistry:
         logger.info("DEADLIFT: P(correct)=%.3f thresh=%.2f -> %s",
                     prob_correct, threshold, "correct" if form_correct else "incorrect")
 
-        return {
+        result = {
             "form_correct": form_correct,
             "confidence":   conf,
             "feedback": "Good form! Keep it up 💪" if form_correct else "Check your form",
         }
+        risk = assess_injury_risk("deadlift", form_correct, conf, features=features)
+        result["risk_assessment"] = risk
+        return result
 
     def predict_benchpress(self, features: list) -> dict:
         """Predict bench press form correctness using configurable threshold."""
@@ -234,12 +395,15 @@ class ModelRegistry:
         logger.info("BENCH: P(correct)=%.3f thresh=%.2f -> %s",
                     prob_correct, threshold, "correct" if form_correct else "incorrect")
 
-        return {
+        result = {
             "form_correct": form_correct,
             "confidence":   conf,
             "feedback":     "Good bench press form! 💪" if form_correct
                             else "Check your form: Keep elbows tucked, back arched, and wrists straight.",
         }
+        risk = assess_injury_risk("benchpress", form_correct, conf, features=features)
+        result["risk_assessment"] = risk
+        return result
 
     def predict_squat(self, squat_features: dict) -> dict:
         """
@@ -301,13 +465,17 @@ class ModelRegistry:
         error_label = SQUAT_ERROR_MAP.get(error_code, "Unknown error")
         logger.info("SQUAT: error_code=%d conf=%.3f model=%s", error_code, conf, model_used)
 
-        return {
+        result = {
             "form_correct": form_correct, "confidence": conf,
             "error_type": "Correct" if form_correct else error_label,
             "error_code": error_code if not form_correct else 0,
             "detail_confidence": conf,
             "feedback": "Good squat form! 💪" if form_correct else error_label,
         }
+        risk = assess_injury_risk("squat", form_correct, conf,
+                                  features=squat_features, error_code=error_code)
+        result["risk_assessment"] = risk
+        return result
 
 
 # ── Backward-compatible module-level API ──────────────────────────────────────

@@ -40,6 +40,16 @@ class ExercisePrediction(BaseModel):
     exercise:   str
     confidence: float
 
+class RiskAssessment(BaseModel):
+    """Injury risk assessment — addresses thesis: ประเมินความเสี่ยงการบาดเจ็บ"""
+    risk_level:     str = Field(description="low / medium / high / critical")
+    risk_label:     str = Field(description="Human-readable risk label (EN)")
+    risk_label_th:  str = Field(description="Human-readable risk label (TH)")
+    risk_score:     float = Field(ge=0, le=100, description="Risk score 0-100")
+    risk_color:     str = Field(description="Hex color for UI display")
+    risk_factors:   list[str] = Field(description="List of detected risk factors")
+    recommendation: str = Field(description="Safety recommendation")
+
 class FormPrediction(BaseModel):
     form_correct:      bool
     confidence:        float
@@ -47,3 +57,5 @@ class FormPrediction(BaseModel):
     error_type:        Optional[str] = None
     error_code:        Optional[int] = None
     detail_confidence: Optional[float] = None
+    risk_assessment:   Optional[RiskAssessment] = None
+
