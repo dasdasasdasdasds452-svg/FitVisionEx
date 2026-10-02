@@ -94,7 +94,19 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
-limiter = Limiter(key_func=get_remote_address, default_limits=["30/minute"])
+def _client_ip(request: Request) -> str:
+    """Real client IP behind the hosting proxy (Railway/Koyeb/Fly add X-Forwarded-For).
+    Without this every user shares the proxy's IP and therefore one rate-limit bucket."""
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return get_remote_address(request)
+
+
+# The camera sends a prediction every ~5 frames (several per second while lifting),
+# so the default must allow a live session: 30/min cut users off after ~10 s.
+PREDICT_RATE = os.getenv("PREDICT_RATE_LIMIT", "600/minute")
+limiter = Limiter(key_func=_client_ip, default_limits=[PREDICT_RATE])
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 

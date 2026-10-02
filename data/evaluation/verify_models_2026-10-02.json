@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-02",
+  "versions": {
+    "python": "3.11.14",
+    "sklearn": "1.3.2",
+    "numpy": "1.26.4"
+  },
+  "checks": [
+    {
+      "name": "scikit-learn matches production (1.3.2)",
+      "status": "PASS",
+      "detail": "1.3.2"
+    },
+    {
+      "name": "deadlift: loads and returns schema-valid output",
+      "status": "PASS",
+      "detail": "Check your form"
+    },
+    {
+      "name": "benchpress: loads and returns schema-valid output",
+      "status": "PASS",
+      "detail": "Check your form: Keep elbows tucked, back arched, and wrists straight."
+    },
+    {
+      "name": "squat: standing pose is not flagged",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "squat: deep squat with knees caving gets a risk assessment",
+      "status": "PASS",
+      "detail": "form_correct=True error=Correct"
+    },
+    {
+      "name": "deadlift: train/test video lists stored in model",
+      "status": "PASS",
+      "detail": "440 train / 110 test videos"
+    },
+    {
+      "name": "deadlift: no video in both train and test",
+      "status": "PASS",
+      "detail": "overlap=0"
+    },
+    {
+      "name": "deadlift: better than chance (balanced acc > 0.60)",
+      "status": "PASS",
+      "detail": "0.8273"
+    },
+    {
+      "name": "deadlift: serving code == raw model on 40 rows",
+      "status": "PASS",
+      "detail": "0 mismatches"
+    },
+    {
+      "name": "benchpress: train/test video lists stored in model",
+      "status": "PASS",
+      "detail": "326 train / 82 test videos"
+    },
+    {
+      "name": "benchpress: no video in both train and test",
+      "status": "PASS",
+      "detail": "overlap=0"
+    },
+    {
+      "name": "benchpress: better than chance (balanced acc > 0.60)",
+      "status": "PASS",
+      "detail": "0.9953"
+    },
+    {
+      "name": "benchpress: serving code == raw model on 40 rows",
+      "status": "PASS",
+      "detail": "0 mismatches"
+    },
+    {
+      "name": "squat: held-out test split exists",
+      "status": "PASS",
+      "detail": "960 images"
+    },
+    {
+      "name": "squat: better than chance (balanced acc > 0.60)",
+      "status": "PASS",
+      "detail": "0.8934"
+    },
+    {
+      "name": "client shoulder/hip width + torso length match training (2D distance, left side torso)",
+      "status": "PASS",
+      "detail": "camera/page.tsx must use dist2d(...) like extract_features.py"
+    }
+  ],
+  "models": {
+    "deadlift": {
+      "n": 21263,
+      "accuracy": 0.8034,
+      "balanced_accuracy": 0.8273,
+      "f1_macro": 0.7914,
+      "false_alarm_rate": 0.1078,
+      "miss_rate": 0.2376,
+      "confusion[correct,incorrect]": [
+        [
+          5992,
+          724
+        ],
+        [
+          3456,
+          11091
+        ]
+      ],
+      "per_video": {
+        "videos": 110,
+        "accuracy": 0.9364,
+        "balanced_accuracy": 0.9459
+      },
+      "threshold": 0.15,
+      "recorded_in_model": {
+        "accuracy": 0.816582796406904,
+        "f1_macro": 0.802643081499035
+      }
+    },
+    "benchpress": {
+      "n": 13218,
+      "accuracy": 0.9939,
+      "balanced_accuracy": 0.9953,
+      "f1_macro": 0.9934,
+      "false_alarm_rate": 0.0092,
+      "miss_rate": 0.0002,
+      "confusion[correct,incorrect]": [
+        [
+          8496,
+          79
+        ],
+        [
+          1,
+          4642
+        ]
+      ],
+      "per_video": {
+        "videos": 82,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0
+      },
+      "threshold": 0.5,
+      "recorded_in_model": {
+        "accuracy": 0.9939476471478287,
+        "f1_macro": 0.9933853034233082
+      }
+    },
+    "squat": {
+      "n": 960,
+      "raw_3class_accuracy": 0.8781,
+      "raw_3class_f1_macro": 0.88,
+      "served_binary": {
+        "n": 960,
+        "accuracy": 0.8865,
+        "balanced_accuracy": 0.8934,
+        "f1_macro": 0.8755,
+        "false_alarm_rate": 0.0871,
+        "miss_rate": 0.1262,
+        "confusion[correct,incorrect]": [
+          [
+            283,
+            27
+          ],
+          [
+            82,
+            568
+          ]
+        ]
+      },
+      "rows_skipped_by_standing_check": 29
+    }
+  }
+}

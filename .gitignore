@@ -79,3 +79,4 @@ logs/
 data/raw/  
 *.mp4  
 catboost_info/  
+mlruns/

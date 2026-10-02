@@ -1,0 +1,37 @@
+Python 3.11.14  scikit-learn 1.3.2  numpy 1.26.4
+  [PASS] scikit-learn matches production (1.3.2) — 1.3.2
+
+── smoke: each endpoint returns a valid response ──
+  [PASS] deadlift: loads and returns schema-valid output — Check your form
+  [PASS] benchpress: loads and returns schema-valid output — Check your form: Keep elbows tucked, back arched, and wrists straight.
+  [PASS] squat: standing pose is not flagged
+  [PASS] squat: deep squat with knees caving gets a risk assessment — form_correct=True error=Correct
+
+── deadlift (deadlift_form_calibrated.pkl) ──
+  [PASS] deadlift: train/test video lists stored in model — 440 train / 110 test videos
+  [PASS] deadlift: no video in both train and test — overlap=0
+  held-out frames: 21263  acc=0.8034  balanced=0.8273  false-alarm=0.1078  miss=0.2376
+  per video: {'videos': 110, 'accuracy': 0.9364, 'balanced_accuracy': 0.9459}
+  [PASS] deadlift: better than chance (balanced acc > 0.60) — 0.8273
+  [PASS] deadlift: serving code == raw model on 40 rows — 0 mismatches
+
+── benchpress (benchpress_form.pkl) ──
+  [PASS] benchpress: train/test video lists stored in model — 326 train / 82 test videos
+  [PASS] benchpress: no video in both train and test — overlap=0
+  held-out frames: 13218  acc=0.9939  balanced=0.9953  false-alarm=0.0092  miss=0.0002
+  per video: {'videos': 82, 'accuracy': 1.0, 'balanced_accuracy': 1.0}
+  [PASS] benchpress: better than chance (balanced acc > 0.60) — 0.9953
+  [PASS] benchpress: serving code == raw model on 40 rows — 0 mismatches
+
+── squat (squat_form_3class.pkl) ──
+  [PASS] squat: held-out test split exists — 960 images
+  raw 3-class acc=0.8781 f1=0.88
+  served good/bad: acc=0.8865 balanced=0.8934 false-alarm=0.0871 miss=0.1262  (standing-check rows: 29)
+  [PASS] squat: better than chance (balanced acc > 0.60) — 0.8934
+
+── client ↔ training feature contract ──
+  [PASS] client shoulder/hip width + torso length match training (2D distance, left side torso) — camera/page.tsx must use dist2d(...) like extract_features.py
+
+Report: C:\fit\FitVision\data\evaluation\verify_models_2026-10-02.json  (35s)
+ALL HARD CHECKS PASSED
+exit code 0 

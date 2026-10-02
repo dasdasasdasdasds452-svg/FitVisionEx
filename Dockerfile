@@ -25,7 +25,7 @@ COPY src/ ./src/
 COPY data/models/*.pkl ./data/models/
 
 # Make sure scripts in .local are usable
-ENV PATH=/root/.local/bin:
+ENV PATH=/root/.local/bin:$PATH
 ENV PYTHONPATH=/app
 
 EXPOSE 8080
